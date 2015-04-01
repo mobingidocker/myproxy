@@ -19,12 +19,17 @@ ADD run.sh /run.sh
 RUN chmod 755 /*.sh
 
 ENV ADMIN_ADDRESS 0.0.0.0:4041
-ENV PROXY_ADDRESS 0.0.0.0:4041
+ENV ADMIN_USERNAME mysqlproxy_admin
+ENV ADMIN_PASSWORD mysqlproxy_secret
+ENV PROXY_ADDRESS 0.0.0.0:3306
 ENV MASTER_ADDRESSES 192.168.0.11:3306
 ENV SLAVE_ADDRESSES 192.168.0.12:3306,192.168.0.13:3306
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY default-mysql-proxy /etc/default/mysql-proxy
 COPY mysql-proxy.conf /etc/mysql-proxy.conf
+COPY updateconfig.rb /updateconfig.rb
+
+RUN chmod 660 /etc/mysql-proxy.conf
 
 CMD [ "/run.sh" ]
