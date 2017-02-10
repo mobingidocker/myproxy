@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER david.siaw@mobingi.com
+LABEL MAINTAINER gone
 
 RUN \
     apt-get update && \

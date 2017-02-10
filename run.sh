@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ruby /updateconfig.rb
-/usr/bin/supervisord
+exec /usr/bin/supervisord
